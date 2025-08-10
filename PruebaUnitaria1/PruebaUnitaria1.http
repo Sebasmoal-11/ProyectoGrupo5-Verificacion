@@ -1,0 +1,6 @@
+@PruebaUnitaria1_HostAddress = http://localhost:5231
+
+GET {{PruebaUnitaria1_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

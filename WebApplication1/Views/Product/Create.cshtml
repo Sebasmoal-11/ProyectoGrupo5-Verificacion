@@ -1,0 +1,16 @@
+﻿@model TiendaVirtualMVC.Models.Product
+
+<h2>Agregar Producto</h2>
+
+<form asp-action="Create" method="post">
+    <label for="Name">Nombre:</label>
+    <input type="text" id="Name" name="Name" required />
+
+    <label for="Description">Descripción:</label>
+    <textarea id="Description" name="Description" required></textarea>
+
+    <label for="Price">Precio:</label>
+    <input type="number" id="Price" name="Price" min="0" required />
+
+    <button type="submit">Agregar Producto</button>
+</form>
