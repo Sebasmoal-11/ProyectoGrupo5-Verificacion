@@ -1,7 +1,10 @@
 ﻿@model TiendaVirtualMVC.Models.Product
 
-<h2>Agregar Producto</h2>
+@{
+    ViewData["Title"] = "Agregar Producto";
+}
 
+<h2>Agregar Producto</h2>
 <form asp-action="Create" method="post">
     <label for="Name">Nombre:</label>
     <input type="text" id="Name" name="Name" required />

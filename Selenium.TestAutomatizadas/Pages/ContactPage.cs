@@ -279,9 +279,28 @@ namespace Selenium.TestAutomatizadas.Pages
             }
         }
 
-        internal bool ExisteMensajeError(string v)
+        internal bool ExisteMensajeError(string mensajeEsperado)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+                return wait.Until(d =>
+                {
+                    var mensajesError = d.FindElements(By.CssSelector(".alert.alert-danger, .text-danger, .validation-summary-errors"));
+                    foreach (var elemento in mensajesError)
+                    {
+                        if (elemento.Displayed && elemento.Text.Contains(mensajeEsperado, StringComparison.OrdinalIgnoreCase))
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

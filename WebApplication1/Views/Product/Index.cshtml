@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<TiendaVirtualMVC.Models.Product>
 
+@{
+    ViewData["Title"] = "Productos";
+}
+
 <h2>Productos Disponibles</h2>
 @foreach (var product in Model)
 {

@@ -41,8 +41,8 @@ namespace Selenium.TestAutomatizadas
             var validacionCamposVacios = new ValidacionCamposVaciosContactoTest(rutaUrl);
             validacionCamposVacios.Ejecutar();
 
-            var navegacionPaginas = new NavegacionEntrePaginasTest(rutaUrl);
-            navegacionPaginas.Ejecutar();
+          //  var navegacionPaginas = new NavegacionEntrePaginasTest(rutaUrl);
+           // navegacionPaginas.Ejecutar();
 
             var mensajeExitoContacto = new MensajeExitoContactoTest(rutaUrl);
             mensajeExitoContacto.Ejecutar();

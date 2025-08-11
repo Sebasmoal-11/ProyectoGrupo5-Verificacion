@@ -1,7 +1,10 @@
 ﻿@model TiendaVirtualMVC.Models.Product
 
-<h2>Editar Producto</h2>
+@{
+    ViewData["Title"] = "Editar Producto";
+}
 
+<h2>Editar Producto</h2>
 <form asp-action="Edit" method="post">
     <input type="hidden" asp-for="Id" />
 

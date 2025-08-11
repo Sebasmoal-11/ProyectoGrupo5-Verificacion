@@ -13,21 +13,43 @@ namespace WebApplication1.Controllers
         {
             _logger = logger;
         }
+        public IActionResult Contact()
+        {
+            return View();
+        }
 
         [HttpPost]
         public IActionResult Contact(Contact contact)
         {
-            var (esValido, mensajeError) = TiendaVirtualMVC.Rules.RulesContact.formularioEsValido(contact);
-
-            if (!esValido)
+            if (string.IsNullOrWhiteSpace(contact.Name))
             {
-                ViewBag.Error = mensajeError;
+                ModelState.AddModelError(nameof(contact.Name), "El nombre es obligatorio");
+            }
+
+            if (string.IsNullOrWhiteSpace(contact.Email))
+            {
+                ModelState.AddModelError(nameof(contact.Email), "El correo es obligatorio");
+            }
+            else if (!contact.Email.Contains("@") || !contact.Email.Contains("."))
+            {
+                ModelState.AddModelError(nameof(contact.Email), "El correo no tiene un formato válido");
+            }
+
+            if (string.IsNullOrWhiteSpace(contact.Message))
+            {
+                ModelState.AddModelError(nameof(contact.Message), "El mensaje es obligatorio");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                // Retorna la vista con los errores para que se muestren con ValidationMessageFor
                 return View(contact);
             }
 
             ViewBag.Mensaje = "Su mensaje fue enviado correctamente.";
             return View();
         }
+
 
         public IActionResult Index()
         {
@@ -43,11 +65,6 @@ namespace WebApplication1.Controllers
 
 
         public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult Contact()
         {
             return View();
         }

@@ -26,10 +26,15 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento04   //requ 04
             contacto.LlenarObligatorios("", "", "");
             contacto.EnviarFormulario();
 
+            // Esperar un momento a que la página procese el envío y muestre errores
+            System.Threading.Thread.Sleep(1000); // o mejor usa WebDriverWait dentro de ExisteMensajeError
+
+
             // Verificar mensajes de error
-            bool nombreError = contacto.ExisteMensajeError("nombre");
-            bool correoError = contacto.ExisteMensajeError("correo");
-            bool mensajeError = contacto.ExisteMensajeError("mensaje");
+            bool nombreError = contacto.ExisteMensajeError("El nombre es obligatorio");
+            bool correoError = contacto.ExisteMensajeError("El correo es obligatorio");
+            bool mensajeError = contacto.ExisteMensajeError("El mensaje es obligatorio");
+
 
             if (!nombreError || !correoError || !mensajeError)
                 throw new Exception("[Contacto] No se mostraron mensajes de error en todos los campos obligatorios.");

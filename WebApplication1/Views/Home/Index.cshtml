@@ -1,10 +1,15 @@
 ﻿@model IEnumerable<TiendaVirtualMVC.Models.Product>
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
 <h2>Productos Disponibles</h2>
 @foreach (var product in Model)
 {
-<div class="product">
-<h3>@product.Name</h3>
-<p>@product.Description</p>
-<p>$@product.Price</p>
-</div>
+    <div class="product">
+        <h3>@product.Name</h3>
+        <p>@product.Description</p>
+        <p>$@product.Price</p>
+    </div>
 }
