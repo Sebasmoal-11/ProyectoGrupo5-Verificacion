@@ -27,9 +27,9 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento06 //Req 6
                 .EnviarFormulario();
 
             if (!contacto.SeMostroExito())
-                throw new Exception("[Contacto] ❌ No se mostró el mensaje de éxito tras enviar el formulario.");
+                throw new Exception("[Contacto] No se mostró el mensaje de éxito tras enviar el formulario.");
 
-            Console.WriteLine("[Contacto] ✅ Mensaje de éxito mostrado correctamente.");
+            Console.WriteLine("[Contacto] Mensaje de éxito mostrado correctamente.");
         }
     }
 }

@@ -23,17 +23,17 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento05 // Req 5
 
             // Inicio
             wait.Until(d => d.Title.Contains("Inicio"));
-            Console.WriteLine("[Navegación] ✅ Página de inicio cargada.");
+            Console.WriteLine("[Navegación] Página de inicio cargada.");
 
             // Productos
             driver.FindElement(By.LinkText("Productos")).Click();
             wait.Until(d => d.Title.Contains("Productos"));
-            Console.WriteLine("[Navegación] ✅ Página de productos cargada.");
+            Console.WriteLine("[Navegación] Página de productos cargada.");
 
             // Contacto
             driver.FindElement(By.LinkText("Contacto")).Click();
             wait.Until(d => d.Title.Contains("Contacto"));
-            Console.WriteLine("[Navegación] ✅ Página de contacto cargada.");
+            Console.WriteLine("[Navegación] Página de contacto cargada.");
         }
     }
 }

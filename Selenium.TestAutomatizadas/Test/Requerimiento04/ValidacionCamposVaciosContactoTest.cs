@@ -32,9 +32,9 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento04   //requ 04
             bool mensajeError = contacto.ExisteMensajeError("mensaje");
 
             if (!nombreError || !correoError || !mensajeError)
-                throw new Exception("[Contacto] ❌ No se mostraron mensajes de error en todos los campos obligatorios.");
+                throw new Exception("[Contacto] No se mostraron mensajes de error en todos los campos obligatorios.");
 
-            Console.WriteLine("[Contacto] ✅ Validación de campos vacíos correcta.");
+            Console.WriteLine("[Contacto] Validación de campos vacíos correcta.");
         }
     }
 }

@@ -64,7 +64,7 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento03
                 throw new Exception($"[Productos] '{nombre ?? "null"}' no aparece en la lista.");
             }
 
-            Console.WriteLine($"[Productos] ✅ '{nombre}' creado y visible en la lista.");
+            Console.WriteLine($"[Productos] '{nombre}' creado y visible en la lista.");
 
 
 
@@ -76,7 +76,7 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento03
 
                 if (enStorage)
                 {
-                    Console.WriteLine("[Productos] ⚠️ No se ve en la lista todavía, pero sí está en localStorage. Refrescando…");
+                    Console.WriteLine("[Productos]  No se ve en la lista todavía, pero sí está en localStorage. Refrescando…");
                     driver.Navigate().Refresh();
                     EsperarDocumentoListo(driver, wait);
                     encontradoUI = BuscarProductoEnContenedores(driver, nombre) || BodyContieneTexto(driver, nombre);
@@ -84,7 +84,7 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento03
                     if (!encontradoUI)
                     {
                         // Lo damos por válido: la UI no refresca automáticamente
-                        Console.WriteLine($"[Productos] ✅ '{nombre}' creado (validado por localStorage). La UI no lo muestra aún.");
+                        Console.WriteLine($"[Productos] '{nombre}' creado (validado por localStorage). La UI no lo muestra aún.");
                         return;
                     }
                 }

@@ -31,7 +31,7 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento02
             if (!contacto.SeMostroExito())
                 throw new Exception("[Contacto] No se detectó mensaje de éxito ni alert válido.");
 
-            Console.WriteLine("[Contacto] ✅ Envío correcto con mensaje de éxito.");
+            Console.WriteLine("[Contacto]  Envío correcto con mensaje de éxito.");
         }
     }
 }

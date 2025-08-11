@@ -16,7 +16,7 @@ namespace PruebasUnitarias.UnitTests.Home
         public async Task IndexDevuelveListaProductos_ModelCorrecto()
         {
             var logger = new Mock<ILogger<ControllerNS.HomeController>>();
-            var controller = new ControllerNS.HomeController(logger.Object); // 👈 SOLO 1 arg
+            var controller = new ControllerNS.HomeController(logger.Object); 
 
             var call = controller.Index();
             var result = call is Task<IActionResult> t ? await t : (IActionResult)call;

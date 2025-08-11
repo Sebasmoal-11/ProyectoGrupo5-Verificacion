@@ -29,7 +29,7 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento01
                     throw new Exception($"[Carga Home] Excedido: {t.TotalSeconds:F2}s (>3s)");
             }
 
-            Console.WriteLine("[Carga Home] ✅ OK (<3s).");
+            Console.WriteLine("[Carga Home] OK (<3s).");
         }
     }
 }
