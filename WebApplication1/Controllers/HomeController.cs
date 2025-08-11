@@ -1,5 +1,6 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using TiendaVirtualMVC.Models;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -13,14 +14,33 @@ namespace WebApplication1.Controllers
             _logger = logger;
         }
 
-        public HomeController()
+        [HttpPost]
+        public IActionResult Contact(Contact contact)
         {
+            var (esValido, mensajeError) = TiendaVirtualMVC.Rules.RulesContact.formularioEsValido(contact);
+
+            if (!esValido)
+            {
+                ViewBag.Error = mensajeError;
+                return View(contact);
+            }
+
+            ViewBag.Mensaje = "Su mensaje fue enviado correctamente.";
+            return View();
         }
 
         public IActionResult Index()
         {
-            return View();
+            var productos = new List<Product>
+    {
+        new Product { Name = "Producto 1", Description = "Descripción 1", Price = 10 },
+        new Product { Name = "Producto 2", Description = "Descripción 2", Price = 15 }
+        // puedes agregar más productos aquí
+    };
+
+            return View(productos);
         }
+
 
         public IActionResult Privacy()
         {

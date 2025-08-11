@@ -30,10 +30,10 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento03
             page.ClickAgregarProducto();
 
             // 3) Esperar el form (#productName) y completar
-            wait.Until(d => { try { return d.FindElement(By.Id("productName")).Displayed; } catch { return false; } });
+            wait.Until(d => { try { return d.FindElement(By.Id("Name")).Displayed; } catch { return false; } });
 
             string nombre = $"Producto QA {DateTime.UtcNow:HHmmss}";
-            page.CompletarFormulario(nombre, "Descripción de prueba automática", "19.99");
+            page.CompletarFormulario(nombre, "Descripción de prueba automática", "19");
             page.EnviarFormularioProducto();
 
             // 4) Aceptar alert si lo hay
@@ -45,6 +45,29 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento03
 
             // 6) Buscar en UI
             bool encontradoUI = BuscarProductoEnContenedores(driver, nombre) || BodyContieneTexto(driver, nombre);
+            // 6) Esperar hasta que aparezca el producto en la lista
+            // Esperar a que aparezca el producto en la lista, usando wait
+            try
+            {
+                wait.Until(d => d.FindElements(By.XPath($"//div[contains(@class, 'product')]//h3[contains(text(), '{nombre}')]")).Count > 0);
+                encontradoUI = true;
+            }
+            catch (WebDriverTimeoutException)
+            {
+                encontradoUI = BuscarProductoEnContenedores(driver, nombre) || BodyContieneTexto(driver, nombre);
+            }
+
+            // Validación con llaves para evitar ambigüedades
+            if (!encontradoUI)
+            {
+                Console.WriteLine($"DEBUG - Nombre del producto: '{nombre ?? "null"}'");
+                throw new Exception($"[Productos] '{nombre ?? "null"}' no aparece en la lista.");
+            }
+
+            Console.WriteLine($"[Productos] ✅ '{nombre}' creado y visible en la lista.");
+
+
+
 
             if (!encontradoUI)
             {
@@ -78,11 +101,6 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento03
                     catch { }
                 }
             }
-
-            if (!(encontradoUI))
-                throw new Exception($"[Productos] '{nombre}' no aparece en la lista.");
-
-            Console.WriteLine($"[Productos] ✅ '{nombre}' creado y visible en la lista.");
         }
 
         // ========= Helpers =========

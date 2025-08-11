@@ -28,12 +28,15 @@ namespace TiendaVirtualMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                products.Add(product); // Aquí podrías guardar el producto en una lista o base de datos
+                // Asignar Id incremental
+                product.Id = products.Any() ? products.Max(p => p.Id) + 1 : 1;
+                products.Add(product);
                 return RedirectToAction("Index");
             }
 
             return View(product);
         }
+
 
         //Accion GET para mostrar el formulario de edición por Id
         [HttpGet]

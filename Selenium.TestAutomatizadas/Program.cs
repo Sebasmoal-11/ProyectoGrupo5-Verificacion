@@ -21,7 +21,7 @@ namespace Selenium.TestAutomatizadas
 
         static async Task Main(string[] args)
         {
-            string rutaUrl = "http://127.0.0.1:5500/Pagina%20Web/index.html"; //ejecutarlo desde el VS Code > Open with Live Server para las pruebas de carga automatizadas
+            string rutaUrl = "https://localhost:7202"; //ejecutarlo desde el VS Code > Open with Live Server para las pruebas de carga automatizadas
 
             Console.WriteLine(rutaUrl);
 

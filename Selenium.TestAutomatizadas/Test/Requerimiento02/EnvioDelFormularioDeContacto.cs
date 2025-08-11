@@ -25,6 +25,8 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento02
                     correo: $"qa{DateTime.UtcNow.Ticks}@mailinator.com",
                     mensaje: "Mensaje de prueba desde automatización")
                 .EnviarFormulario();
+            Console.WriteLine(driver.PageSource); // Para ver el HTML después de enviar
+
 
             if (!contacto.SeMostroExito())
                 throw new Exception("[Contacto] No se detectó mensaje de éxito ni alert válido.");

@@ -4,6 +4,16 @@
 
 <h2>Formulario de Contacto</h2>
 
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success">@ViewBag.Mensaje</div>
+}
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+
 <form method="post" action="#">
     <div class="form-group">
         <label for="name">Nombre:</label>

@@ -12,9 +12,9 @@ namespace Selenium.TestAutomatizadas.Pages
         }
 
         // Localizadores para formulario (solo en add-product.html)
-        public IWebElement InputNombre => driver.FindElement(By.Id("productName"));
-        public IWebElement InputDescripcion => driver.FindElement(By.Id("productDescription"));
-        public IWebElement InputPrecio => driver.FindElement(By.Id("productPrice"));
+        public IWebElement InputNombre => driver.FindElement(By.Id("Name"));
+        public IWebElement InputDescripcion => driver.FindElement(By.Id("Description"));
+        public IWebElement InputPrecio => driver.FindElement(By.Id("Price"));
         public IWebElement BotonAgregar => driver.FindElement(By.CssSelector("button[type='submit']"));
 
         // Localizador para el enlace "Agregar Producto" en index.html
