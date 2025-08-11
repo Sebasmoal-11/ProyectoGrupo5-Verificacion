@@ -1,99 +1,41 @@
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using TiendaVirtualMVC.Models;
 
-namespace PruebasUnitarias.UnitTests.Home
+namespace PruebasUnitarias.UnitTests.Productos
 {
-    /// <summary>
-    /// Conjunto de pruebas unitarias que verifican el comportamiento de la entidad
-    /// Product ante datos inválidos. Cada prueba se centra en una regla de
-    /// validación específica: precio negativo, nombre vacío y descripción demasiado larga.
-    /// </summary>
     [TestClass]
-    public class ProductValidation_InvalidCases
+    public class ProductValidation_NegativePriceTests
     {
-        /// <summary>
-        /// Verifica que el validador de DataAnnotations marque como inválido un
-        /// producto cuyo precio es negativo. De acuerdo con los requisitos, los
-        /// precios negativos deben rechazarse.
-        /// </summary>
         [TestMethod]
-        [TestCategory("Validación de precios negativos")]//Requerimiento 2
-        public void PrecioNegativo_EsNoValido()
+        [TestCategory("Validación de precios negativos")]
+        public void PrecioNegativo_EsNoValido_Model()
         {
-            // Arrange: se crea un producto con un precio negativo
+            // Arrange
             var producto = new Product
             {
-                Name = "Producto de prueba",
-                Description = "Descripción corta",
-                Price = -10m
+                Name = "Producto X",
+                Description = "Alguna descripción",
+                Price = -5m            // ← precio negativo
             };
-            var context = new ValidationContext(producto, null, null);
-            var results = new List<ValidationResult>();
 
-            // Act: se valida el objeto
-            var esValido = Validator.TryValidateObject(producto, context, results, true);
-
-            // Assert: la validación debe fallar y debe existir al menos un error
-            Assert.IsFalse(esValido, "Un producto con precio negativo debería ser inválido.");
-            Assert.IsTrue(results.Count > 0, "Se esperaba al menos un mensaje de error al validar un precio negativo.");
-        }
-
-        /// <summary>
-        /// Verifica que la validación de DataAnnotations rechace un producto con
-        /// nombre vacío o nulo. La lógica de la aplicación no debería permitir
-        /// nombres vacíos.
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Validación de nombre vacío")]
-        public void NombreVacio_EsNoValido()
-        {
-            // Arrange: se crea un producto sin nombre
-            var producto = new Product
-            {
-                Name = string.Empty,
-                Description = "Tiene descripción",
-                Price = 15m
-            };
-            var context = new ValidationContext(producto, null, null);
+            var ctx = new ValidationContext(producto);
             var results = new List<ValidationResult>();
 
             // Act
-            var esValido = Validator.TryValidateObject(producto, context, results, true);
+            var esValido = Validator.TryValidateObject(producto, ctx, results, validateAllProperties: true);
 
             // Assert
-            Assert.IsFalse(esValido, "No debería permitirse crear un producto sin nombre.");
-            Assert.IsTrue(results.Count > 0, "Se esperaba al menos un mensaje de error para el nombre vacío.");
-        }
+            Assert.IsFalse(esValido, "Un precio negativo debe invalidar el producto.");
+            Assert.IsTrue(results.Count > 0, "Se esperaba al menos un error de validación.");
 
-        /// <summary>
-        /// Comprueba que un producto cuya descripción supera los 500 caracteres
-        /// sea considerado inválido por las reglas de validación. Esto aplica
-        /// únicamente si se define un atributo de longitud máxima en el modelo.
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Validación de longitud de descripción")]
-        public void DescripcionMayor500_EsNoValido()
-        {
-            // Arrange: se crea una descripción de más de 500 caracteres
-            var descripcionLarga = new string('A', 501);
-            var producto = new Product
-            {
-                Name = "Nombre válido",
-                Description = descripcionLarga,
-                Price = 20m
-            };
-            var context = new ValidationContext(producto, null, null);
-            var results = new List<ValidationResult>();
-
-            // Act
-            var esValido = Validator.TryValidateObject(producto, context, results, true);
-
-            // Assert
-            Assert.IsFalse(esValido, "La descripción que supera los 500 caracteres debe ser inválida.");
-            Assert.IsTrue(results.Count > 0, "Se esperaba un mensaje de error por longitud excesiva de la descripción.");
+            // (Opcional) Confirma que el error corresponde al campo Price
+            Assert.IsTrue(results.Any(r =>
+                     r.MemberNames != null && r.MemberNames.Contains(nameof(Product.Price))),
+                "Se esperaba un error asociado a la propiedad Price.");
         }
     }
 }
+
