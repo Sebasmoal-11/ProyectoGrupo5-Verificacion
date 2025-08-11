@@ -278,5 +278,10 @@ namespace Selenium.TestAutomatizadas.Pages
                 return false;
             }
         }
+
+        internal bool ExisteMensajeError(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
