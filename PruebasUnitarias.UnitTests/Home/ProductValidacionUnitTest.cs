@@ -3,34 +3,32 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using TiendaVirtualMVC.Controllers;
 using TiendaVirtualMVC.Models;
+using TiendaVirtualMVC.Rules;
 
 namespace PruebasUnitarias.UnitTests.ProductControllerTests
 {
     [TestClass]
-    public class ProductControllerUnitTest
+    public class ProductValidacionUnitTest
     {
-        [TestMethod]
-        public void Create_ProductoValido_RedireccionaIndex()
-        {
-            // Arrange
-            var controller = new ProductController();
+        private (bool, string) esperado;
+        private (bool, string) obtenido;
+        private TiendaVirtualMVC.Models.Product producto;
 
-            var nuevoProducto = new Product
+        [TestMethod]
+        [TestCategory("Requerimiento 3: nombre vacío")] //Requerimiento 3
+        public void nombreVacio_devuelveError()
+        {
+            producto = new TiendaVirtualMVC.Models.Product()
             {
-                Name = "Zapatos",
+                Name = "",
                 Description = "Zapatos deportivos talla 42",
                 Price = 59.99m
             };
 
-            // Act
-            var resultado = controller.Create(nuevoProducto);
+            esperado = (false, "El nombre es obligatorio");
+            obtenido = RulesProduct.productoEsValido(producto);
 
-            // Assert
-            // Verificamos que el resultado es una redirección a la acción Index
-            Assert.IsInstanceOfType(resultado, typeof(RedirectToActionResult));
-
-            var redirectResult = resultado as RedirectToActionResult;
-            Assert.AreEqual("Index", redirectResult.ActionName);
+            Assert.AreEqual(esperado, obtenido);
         }
     }
 }

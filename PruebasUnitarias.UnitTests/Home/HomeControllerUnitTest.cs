@@ -19,7 +19,7 @@ namespace PruebasUnitarias.UnitTests.Home
         public void IndexDevuelveListaProductos_NoEsNull()
         {
             // Arrange: se crea una instancia del controlador
-            var controller = new HomeController();
+            var controller = new WebApplication1.Controllers.HomeController();
 
             // Act: se invoca el método Index
             var resultado = controller.Index();

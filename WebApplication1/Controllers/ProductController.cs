@@ -13,7 +13,7 @@ namespace TiendaVirtualMVC.Controllers
             };
         public IActionResult Index()
         {
-            
+
             return View(products);
         }
 
@@ -28,7 +28,7 @@ namespace TiendaVirtualMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Aquí podrías guardar el producto en una lista o base de datos
+                products.Add(product); // Aquí podrías guardar el producto en una lista o base de datos
                 return RedirectToAction("Index");
             }
 
@@ -46,7 +46,7 @@ namespace TiendaVirtualMVC.Controllers
                 return NotFound();
             }
 
-            return View(product); 
+            return View(product);
         }
 
 

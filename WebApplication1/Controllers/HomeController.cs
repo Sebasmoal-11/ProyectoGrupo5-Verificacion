@@ -13,6 +13,10 @@ namespace WebApplication1.Controllers
             _logger = logger;
         }
 
+        public HomeController()
+        {
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -35,3 +39,4 @@ namespace WebApplication1.Controllers
         }
     }
 }
+

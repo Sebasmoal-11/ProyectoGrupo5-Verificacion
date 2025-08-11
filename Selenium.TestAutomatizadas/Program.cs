@@ -21,9 +21,7 @@ namespace Selenium.TestAutomatizadas
 
         static async Task Main(string[] args)
         {
-            //string rutaWindows = @"file:///X:/Escritorio/ProyectoPaginaWeb/Pagina%20Web/index.html"; //aca ponen su ruta donde tienen guardada la pagina web  de Visual studio code
-            //string rutaUrl = new Uri(rutaWindows).AbsoluteUri;
-            string rutaUrl = "http://127.0.0.1:5500/Pagina%20Web/index.html"; //ejecutarlo desde el VS Code > Open with Live Server para las pruebas de carga automatizadas
+            string rutaUrl = "http://127.0.0.1:5500/index.html"; //ejecutarlo desde el VS Code > Open with Live Server para las pruebas de carga automatizadas
 
             Console.WriteLine(rutaUrl);
 
@@ -41,8 +39,7 @@ namespace Selenium.TestAutomatizadas
 
             var creacionProductos = new CreacionDeProductos(rutaUrl);
             creacionProductos.Ejecutar();
-            //////
-            ////////
+
             var pruebaDescripcionProducto = new ValidarDescripcionProductoTest(rutaUrl);
             pruebaDescripcionProducto.Requerimiento07();
 
