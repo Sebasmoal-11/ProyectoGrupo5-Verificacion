@@ -38,6 +38,15 @@ namespace Selenium.TestAutomatizadas
             var creacionProductos = new CreacionDeProductos(rutaUrl);
             creacionProductos.Ejecutar();
 
+            var validacionCamposVacios = new ValidacionCamposVaciosContactoTest(rutaUrl);
+            validacionCamposVacios.Ejecutar();
+
+            var navegacionPaginas = new NavegacionEntrePaginasTest(rutaUrl);
+            navegacionPaginas.Ejecutar();
+
+            var mensajeExitoContacto = new MensajeExitoContactoTest(rutaUrl);
+            mensajeExitoContacto.Ejecutar();
+
 
             var pruebaDescripcionProducto = new ValidarDescripcionProductoTest(rutaUrl);
             pruebaDescripcionProducto.Requerimiento07();
