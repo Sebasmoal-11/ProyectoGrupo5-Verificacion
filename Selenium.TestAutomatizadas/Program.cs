@@ -21,16 +21,11 @@ namespace Selenium.TestAutomatizadas
 
         static async Task Main(string[] args)
         {
-            string rutaUrl = "http://127.0.0.1:5500/index.html"; //ejecutarlo desde el VS Code > Open with Live Server para las pruebas de carga automatizadas
+            string rutaUrl = "http://127.0.0.1:5500/Pagina%20Web/index.html"; //ejecutarlo desde el VS Code > Open with Live Server para las pruebas de carga automatizadas
 
             Console.WriteLine(rutaUrl);
 
-            // Aquí agregan se agregan segun los requerimientos de esta manera
-
-            //var nombre de la variable = new nombre de la clase de la prueba(rutaUrl);
-            //Nombre de la variable.Nombre del requirimiento();
-
-            // Ejecutar todas las pruebas 
+            // === NUEVAS AUTOMATIZADAS (nombres según la especificación) ===
             var cargaHome = new CargaDeLaPaginaDeInicio(rutaUrl);
             cargaHome.Ejecutar();
 
@@ -39,6 +34,7 @@ namespace Selenium.TestAutomatizadas
 
             var creacionProductos = new CreacionDeProductos(rutaUrl);
             creacionProductos.Ejecutar();
+
 
             var pruebaDescripcionProducto = new ValidarDescripcionProductoTest(rutaUrl);
             pruebaDescripcionProducto.Requerimiento07();
@@ -51,9 +47,6 @@ namespace Selenium.TestAutomatizadas
 
             var pruebaCargaVariosProductos = new PruebaCargaVariosProductosTest(rutaUrl);
             await pruebaCargaVariosProductos.Requerimiento10();
-
-
-
         }
     }
 }

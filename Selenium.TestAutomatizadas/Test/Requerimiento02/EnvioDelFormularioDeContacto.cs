@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium;
 using Selenium.TestAutomatizadas.Pages;
 
 namespace Selenium.TestAutomatizadas.Test.Requerimiento02
@@ -13,6 +14,8 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento02
         {
             var options = new ChromeOptions();
             options.AddArgument("--start-maximized");
+            options.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept; // auto-aceptar alerts
+
             using var driver = new ChromeDriver(options);
 
             var contacto = new ContactoPage(driver)
@@ -24,7 +27,7 @@ namespace Selenium.TestAutomatizadas.Test.Requerimiento02
                 .EnviarFormulario();
 
             if (!contacto.SeMostroExito())
-                throw new Exception("[Contacto] No se mostró el mensaje de éxito.");
+                throw new Exception("[Contacto] No se detectó mensaje de éxito ni alert válido.");
 
             Console.WriteLine("[Contacto] ✅ Envío correcto con mensaje de éxito.");
         }
