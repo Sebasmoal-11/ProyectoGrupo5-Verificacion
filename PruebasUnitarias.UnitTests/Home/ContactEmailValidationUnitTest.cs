@@ -2,7 +2,7 @@
 using TiendaVirtualMVC.Models;
 using TiendaVirtualMVC.Rules;
 
-namespace PruebasUnitarias.UnitTests.Home
+namespace PruebasUnitarias.UnitTests.Home //Req 4
 {
     [TestClass]
     public class ContactEmailValidationUnitTest

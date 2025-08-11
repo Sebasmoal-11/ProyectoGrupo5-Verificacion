@@ -3,7 +3,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace Selenium.TestAutomatizadas.Test.Requerimiento05
+namespace Selenium.TestAutomatizadas.Test.Requerimiento05 // Req 5
 {
     public class NavegacionEntrePaginasTest
     {

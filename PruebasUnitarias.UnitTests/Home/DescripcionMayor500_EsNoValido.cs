@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using TiendaVirtualMVC.Models;
 
-namespace PruebasUnitarias.UnitTests.ProductControllerTests
+namespace PruebasUnitarias.UnitTests.ProductControllerTests //Req 8
 {
     [TestClass]
     public class ProductDescriptionLengthUnitTest

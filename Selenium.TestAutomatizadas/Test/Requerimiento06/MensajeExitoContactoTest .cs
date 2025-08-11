@@ -3,7 +3,7 @@ using OpenQA.Selenium.Chrome;
 using Selenium.TestAutomatizadas.Pages;
 using OpenQA.Selenium;
 
-namespace Selenium.TestAutomatizadas.Test.Requerimiento06
+namespace Selenium.TestAutomatizadas.Test.Requerimiento06 //Req 6
 {
     public class MensajeExitoContactoTest
     {

@@ -3,7 +3,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using Selenium.TestAutomatizadas.Pages;
 
-namespace Selenium.TestAutomatizadas.Test.Requerimiento04
+namespace Selenium.TestAutomatizadas.Test.Requerimiento04   //requ 04
 {
     public class ValidacionCamposVaciosContactoTest
     {
